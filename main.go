@@ -11,16 +11,22 @@ func romanToArabic(roman string) int {   // преобразуем римски�
     value := romanNumerals[rune(roman[i])]
     if value == 0 {
         return -1
-      }
+    }
     if value < prevValue {
         result += value
-      }
+    }
     prevValue = value 
     }
   return result
   }
-
-func arabicToRoman(arabic int) string {   // преобразуем арабские числа в римские 
+  if result < 1 || result > 10 {
+        return 0, fmt.Errorf("число вне допустимого диапазона 1-10")
+  }
+    return result, nil
+}
+    
+  
+    func arabicToRoman(arabic int) string {   // преобразуем арабские числа в римские 
   arabicNumerals := []int{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1}
   romanNumerals := []string{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"}
   result := ""
@@ -63,7 +69,7 @@ func main() {
       a, err1 := strconv.Atoi(input1)
       b, err2 := strconv.Atoi(input2)
 
-      if err1 != nil || err2 != nil { 
+      if err1 != nil || err2 != nil || a < 1 || a > 10 || b < 1 || b > 10 { 
         fmt.Println("Ошибка: Неккоректное арабское число.")
         return
       }
